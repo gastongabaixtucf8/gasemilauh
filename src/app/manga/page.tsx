@@ -86,7 +86,7 @@ export default async function MangaPage() {
   const wishlist = manga.filter((m) => m.status === "wishlist");
 
   return (
-    <main className="flex-1 bg-white text-black" style={mincho}>
+    <main className="bg-manga-page flex-1 text-black" style={mincho}>
       <div className="mx-auto max-w-6xl px-6 py-12">
         <Link
           href="/"

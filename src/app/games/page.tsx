@@ -50,7 +50,7 @@ export default async function GamesPage() {
 
   return (
     <main
-      className="flex-1 bg-indigo-950 text-white"
+      className="bg-arcade flex-1 text-white"
       style={{fontFamily: "var(--font-pixel)"}}
     >
       <div className="mx-auto max-w-6xl px-6 py-12">

@@ -62,7 +62,7 @@ export default async function WarhammerPage() {
   const wishlist = figurines.filter((f) => f.status === "wishlist");
 
   return (
-    <main className="flex-1 bg-zinc-950 text-zinc-200">
+    <main className="bg-grimdark flex-1 text-zinc-200">
       <div className="mx-auto max-w-6xl px-6 py-12">
         <Link
           href="/"

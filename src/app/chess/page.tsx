@@ -24,7 +24,7 @@ export default async function ChessPage() {
 
   return (
     <main
-      className="flex-1 bg-[#f4efe3] text-stone-900"
+      className="bg-chess flex-1 text-stone-900"
       style={{fontFamily: "var(--font-chess)"}}
     >
       <div className="chessboard-strip h-3 w-full" />
