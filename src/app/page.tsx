@@ -1,65 +1,68 @@
-import Image from "next/image";
+import Link from "next/link";
+
+const ROOMS = [
+  {
+    href: "/chess",
+    label: "Chess",
+    glyph: "♞",
+    blurb: "Openings, ratings & trophies",
+    className: "from-stone-100 to-stone-300 text-stone-900 hover:to-white",
+  },
+  {
+    href: "/games",
+    label: "Video Games",
+    glyph: "🎮",
+    blurb: "Records, ratings & wishlist",
+    className: "from-fuchsia-600 to-indigo-700 text-white hover:to-indigo-500",
+  },
+  {
+    href: "/manga",
+    label: "Manga",
+    glyph: "✷",
+    blurb: "What I read, ranked",
+    className: "from-neutral-50 to-neutral-200 text-black hover:to-white",
+  },
+  {
+    href: "/warhammer",
+    label: "Warhammer",
+    glyph: "✠",
+    blurb: "Figurines & battle plans",
+    className: "from-zinc-800 to-black text-amber-200 hover:to-zinc-700",
+  },
+];
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+    <main className="flex-1 bg-neutral-950 text-white">
+      <div className="mx-auto flex min-h-screen max-w-6xl flex-col items-center justify-center gap-12 px-6 py-16">
+        <header className="text-center">
+          <p className="font-mono text-xs uppercase tracking-[0.4em] text-neutral-500">
+            Select a world
           </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
+          <h1 className="mt-3 text-5xl font-black tracking-tight sm:text-7xl">
+            gasemilauh
+          </h1>
+          <p className="mt-3 text-neutral-400">A hub for the things I love.</p>
+        </header>
+
+        <nav className="grid w-full grid-cols-1 gap-6 sm:grid-cols-2">
+          {ROOMS.map((room) => (
+            <Link
+              key={room.href}
+              href={room.href}
+              className={`group relative flex aspect-[16/9] flex-col justify-between overflow-hidden rounded-2xl bg-gradient-to-br p-7 ring-1 ring-white/10 transition-all duration-200 hover:-translate-y-1 hover:shadow-2xl ${room.className}`}
+            >
+              <span className="text-5xl drop-shadow-sm transition-transform duration-200 group-hover:scale-110">
+                {room.glyph}
+              </span>
+              <span>
+                <span className="block text-2xl font-bold">{room.label}</span>
+                <span className="block text-sm opacity-80">{room.blurb}</span>
+              </span>
+            </Link>
+          ))}
+        </nav>
+      </div>
+    </main>
   );
 }
