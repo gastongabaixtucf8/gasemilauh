@@ -441,20 +441,24 @@ body {
   background-size: 44px 44px, 44px 44px, 100% 100%;
 }
 
-/* Manga: faint screentone over paper white */
+/* Manga: visible screentone + diagonal tone over paper white */
 .bg-manga-page {
-  background-color: #ffffff;
-  background-image: radial-gradient(rgba(0, 0, 0, 0.07) 1px, transparent 1.4px);
-  background-size: 10px 10px;
+  background-color: #f3f3f1;
+  background-image:
+    radial-gradient(rgba(0, 0, 0, 0.16) 1.4px, transparent 1.7px),
+    repeating-linear-gradient(45deg, rgba(0, 0, 0, 0.05) 0 1px, transparent 1px 8px);
+  background-size: 12px 12px, 12px 12px;
 }
 
-/* Warhammer: grimdark with a smouldering red glow rising from below */
+/* Warhammer: grimdark with a smouldering red glow anchored to the viewport */
 .bg-grimdark {
   background-color: #0a0a0c;
   background-image:
-    radial-gradient(120% 80% at 50% 120%, rgba(122, 29, 29, 0.5), transparent 55%),
-    radial-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-  background-size: 100% 100%, 6px 6px;
+    radial-gradient(85% 55% at 50% 100%, rgba(185, 28, 28, 0.6), transparent 62%),
+    radial-gradient(70% 40% at 50% 0%, rgba(0, 0, 0, 0.7), transparent 60%),
+    radial-gradient(rgba(255, 90, 60, 0.06) 1px, transparent 1px);
+  background-size: 100% 100%, 100% 100%, 7px 7px;
+  background-attachment: fixed, fixed, scroll;
 }
 
 /* ----- Chessboard motif (Chess room) ----- */
