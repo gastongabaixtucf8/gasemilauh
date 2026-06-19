@@ -188,13 +188,18 @@ body {
   animation: intro-fade-out 0.6s ease forwards;
 }
 
-/* ----- World scene: walking up the road ----- */
+/* ----- World scene: walking up the road to the crossroads ----- */
+/* Knight starts big in the foreground (talking), then walks up + shrinks
+   slightly as he reaches the crossroads. */
+.npc-stand-near {
+  transform: translateY(11vh) scale(1.35);
+}
 @keyframes npc-walk {
   from {
-    transform: translateY(0) scale(1);
+    transform: translateY(11vh) scale(1.35);
   }
   to {
-    transform: translateY(-30vh) scale(0.5);
+    transform: translateY(0) scale(1);
   }
 }
 @keyframes npc-step {
@@ -217,10 +222,7 @@ body {
   }
 }
 .npc-walk {
-  animation: npc-walk 3.5s ease-in forwards;
-}
-.npc-arrived {
-  transform: translateY(-30vh) scale(0.5);
+  animation: npc-walk 3s ease-in-out forwards;
 }
 .npc-step {
   animation: npc-step 0.34s steps(2, end) infinite;
