@@ -98,13 +98,20 @@ function Tree({w}: {w: number}) {
   );
 }
 
-/** A small grass-topped floating rock. */
+/** A small charred floating rock with ember glow and a tiny flame. */
 function SkyStone({w}: {w: number}) {
   return (
-    <svg viewBox="0 0 16 12" width={w} className="pixel-sprite drop-shadow-[0_3px_0_rgba(0,0,0,0.3)]" aria-hidden>
-      <ellipse cx="8" cy="4" rx="7" ry="2.4" fill="#86efac" />
-      <polygon points="2,4 14,4 11,9 5,9" fill="#9c6b3f" />
-      <polygon points="5,9 11,9 8,12" fill="#7a5230" />
+    <svg viewBox="0 0 16 13" width={w} className="pixel-sprite drop-shadow-[0_3px_6px_rgba(234,88,12,0.4)]" aria-hidden>
+      <ellipse cx="8" cy="4" rx="7" ry="2.2" fill="#2a2320" />
+      <ellipse cx="8" cy="3.4" rx="6" ry="0.9" fill="#3a3640" />
+      <polygon points="2,4 14,4 11,9 5,9" fill="#1c1714" />
+      <polygon points="5,9 11,9 8,12.5" fill="#120e0c" />
+      {/* ember cracks */}
+      <line x1="6" y1="5" x2="7.5" y2="8" stroke="#f97316" strokeWidth="0.4" />
+      <line x1="10.5" y1="5" x2="9" y2="8" stroke="#f97316" strokeWidth="0.4" />
+      {/* little flame on top */}
+      <polygon points="6.8,4 8,0.8 9.2,4" fill="#f97316" className="flame-flicker" />
+      <polygon points="7.4,4 8,2.2 8.6,4" fill="#fde047" />
     </svg>
   );
 }

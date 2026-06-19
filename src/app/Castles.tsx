@@ -150,13 +150,14 @@ export function MangaCastle({width}: CastleProps) {
       <circle cx="3" cy="2" r="6" fill={red} />
       <circle cx="3" cy="2" r="6" fill="none" stroke="#7f1d1d" strokeWidth="0.5" />
 
-      {/* charred floating island */}
-      <ellipse cx="16" cy="29" rx="15" ry="3" fill="#2a2320" />
-      <polygon points="2,29 30,29 24,34 8,34" fill="#1c1714" />
-      <polygon points="8,34 24,34 16,37" fill="#120e0c" />
-      {/* ember cracks in the rock */}
-      <line x1="10" y1="30" x2="13" y2="33" stroke={orange} strokeWidth="0.4" />
-      <line x1="20" y1="30" x2="18" y2="33" stroke={orange} strokeWidth="0.4" />
+      {/* charred floating island (kept within the canvas so it isn't clipped) */}
+      <ellipse cx="16" cy="27.5" rx="15" ry="3" fill="#2a2320" />
+      <polygon points="2,27.5 30,27.5 24,31 8,31" fill="#1c1714" />
+      <polygon points="8,31 24,31 16,34" fill="#120e0c" />
+      {/* ember cracks glowing in the rock */}
+      <line x1="11" y1="28" x2="14" y2="32" stroke={orange} strokeWidth="0.4" />
+      <line x1="21" y1="28" x2="18" y2="32" stroke={orange} strokeWidth="0.4" />
+      <line x1="15" y1="31" x2="16" y2="33.5" stroke={red} strokeWidth="0.4" />
 
       {/* flames licking up behind the keep */}
       <polygon points="5,29 7,20 9,29" fill={red} className="flame-flicker" />
