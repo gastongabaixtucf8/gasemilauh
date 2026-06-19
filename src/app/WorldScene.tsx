@@ -15,9 +15,9 @@ const ROOMS: Room[] = [
 ];
 
 const STARFIELD_1 =
-  "radial-gradient(1.5px 1.5px at 20% 30%, #fff, transparent), radial-gradient(1.5px 1.5px at 70% 18%, #fff, transparent), radial-gradient(1px 1px at 45% 50%, #fff, transparent), radial-gradient(1.5px 1.5px at 85% 38%, #fff, transparent), radial-gradient(1px 1px at 12% 62%, #fff, transparent)";
+  "radial-gradient(1.5px 1.5px at 20% 30%, #fff, transparent), radial-gradient(1.5px 1.5px at 70% 18%, #fff, transparent), radial-gradient(1px 1px at 45% 50%, #fff, transparent), radial-gradient(1.5px 1.5px at 85% 38%, #fff, transparent), radial-gradient(1px 1px at 12% 62%, #fff, transparent), radial-gradient(2px 2px at 32% 12%, #fff, transparent), radial-gradient(1px 1px at 50% 35%, #fff, transparent), radial-gradient(1.5px 1.5px at 78% 55%, #fff, transparent), radial-gradient(1px 1px at 5% 40%, #fff, transparent), radial-gradient(1.5px 1.5px at 95% 25%, #fff, transparent)";
 const STARFIELD_2 =
-  "radial-gradient(1px 1px at 55% 14%, #fff, transparent), radial-gradient(1.5px 1.5px at 90% 60%, #fff, transparent), radial-gradient(1px 1px at 33% 22%, #fff, transparent), radial-gradient(1px 1px at 60% 44%, #fff, transparent), radial-gradient(1.5px 1.5px at 8% 28%, #fff, transparent)";
+  "radial-gradient(1px 1px at 55% 14%, #fff, transparent), radial-gradient(1.5px 1.5px at 90% 60%, #fff, transparent), radial-gradient(1px 1px at 33% 22%, #fff, transparent), radial-gradient(1px 1px at 60% 44%, #fff, transparent), radial-gradient(1.5px 1.5px at 8% 28%, #fff, transparent), radial-gradient(2px 2px at 40% 8%, #fff, transparent), radial-gradient(1px 1px at 25% 48%, #fff, transparent), radial-gradient(1.5px 1.5px at 65% 30%, #fff, transparent), radial-gradient(1px 1px at 82% 12%, #fff, transparent), radial-gradient(1px 1px at 48% 58%, #fff, transparent)";
 
 export default function WorldScene({
   talking,
@@ -53,15 +53,15 @@ export default function WorldScene({
         style={{clipPath: "polygon(46% 0, 54% 0, 82% 100%, 18% 100%)"}}
       />
 
-      {/* ---- CASTLES on hills (rise from the ground when Gaston looks to the horizon) ---- */}
-      <div className="absolute inset-x-0 top-[20%] z-10 mx-auto flex max-w-5xl flex-wrap items-end justify-center gap-x-4 gap-y-6 px-4 sm:gap-x-8">
+      {/* ---- CASTLES standing on the horizon, rising from the ground ---- */}
+      <div className="absolute inset-x-0 bottom-[40%] z-10 mx-auto flex max-w-5xl flex-wrap items-end justify-center gap-x-4 gap-y-10 px-4 sm:gap-x-10">
         {ROOMS.map((room, i) => {
           const CastleComp = CASTLES[room.href];
           const delay = {animationDelay: `${i * 160}ms`};
           return (
             <div key={room.href} className="relative flex flex-col items-center">
-              {/* grassy hill behind the castle */}
-              <div className="absolute bottom-9 -z-10 h-16 w-36 rounded-[50%] bg-emerald-700" />
+              {/* grassy hill at the castle's base on the horizon */}
+              <div className="absolute bottom-0 -z-10 h-10 w-32 rounded-[50%] bg-emerald-600" />
               {/* ground mask: the castle emerges from its bottom edge */}
               <div className="overflow-hidden">
                 <div
@@ -71,6 +71,7 @@ export default function WorldScene({
                   <CastleComp />
                 </div>
               </div>
+              {/* ENTER button hangs just below, onto the ground */}
               <Link
                 href={room.href}
                 tabIndex={arrived ? 0 : -1}
@@ -81,7 +82,7 @@ export default function WorldScene({
                   fontFamily: "var(--font-pixel)",
                   ...(arrived ? delay : {}),
                 }}
-                className={`mt-2 rounded-sm border-2 bg-black/75 px-2 py-1 text-center text-[9px] uppercase leading-tight tracking-widest transition-opacity duration-500 hover:bg-black sm:px-3 sm:text-[10px] ${
+                className={`absolute top-full mt-2 rounded-sm border-2 bg-black/80 px-2 py-1 text-center text-[9px] uppercase leading-tight tracking-widest transition-opacity duration-500 hover:bg-black sm:px-3 sm:text-[10px] ${
                   arrived ? "opacity-100" : "pointer-events-none opacity-0"
                 }`}
               >
