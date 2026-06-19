@@ -36,25 +36,14 @@ export default async function ChessPage() {
           ← Back to hub
         </Link>
 
-        <header className="mt-6 flex flex-col gap-6 border-b-2 border-stone-800 pb-6 sm:flex-row sm:items-end">
-          {data?.photo && (
-            <Image
-              src={urlForImage(data.photo).width(320).height(320).fit("crop").url()}
-              alt="Chess"
-              width={160}
-              height={160}
-              className="h-40 w-40 rounded-lg border border-stone-300 object-cover shadow-sm"
-            />
+        <header className="mt-6 border-b-2 border-stone-800 pb-6">
+          <h1 className="text-6xl font-bold tracking-tight">Chess</h1>
+          {data?.rating != null && (
+            <p className="mt-2 text-2xl text-stone-600">
+              Current rating{" "}
+              <span className="font-bold text-stone-900">{data.rating}</span>
+            </p>
           )}
-          <div>
-            <h1 className="text-6xl font-bold tracking-tight">Chess</h1>
-            {data?.rating != null && (
-              <p className="mt-2 text-2xl text-stone-600">
-                Current rating{" "}
-                <span className="font-bold text-stone-900">{data.rating}</span>
-              </p>
-            )}
-          </div>
         </header>
 
         {!data && (
@@ -93,18 +82,29 @@ export default async function ChessPage() {
               {data.favoriteOpenings.map((o) => (
                 <article
                   key={o._key}
-                  className="rounded-lg border border-stone-300 bg-white/60 p-5 shadow-sm"
+                  className="overflow-hidden rounded-lg border border-stone-300 bg-white/60 shadow-sm"
                 >
-                  <h3 className="text-2xl font-bold">{o.name}</h3>
-                  {o.color && (
-                    <p className="text-stone-500">{COLOR_LABELS[o.color]}</p>
+                  {o.photo && (
+                    <Image
+                      src={urlForImage(o.photo).width(640).height(360).fit("crop").url()}
+                      alt={o.name}
+                      width={640}
+                      height={360}
+                      className="h-40 w-full border-b border-stone-300 object-cover"
+                    />
                   )}
-                  {o.moves && (
-                    <p className="mt-2 font-mono text-sm text-stone-700">
-                      {o.moves}
-                    </p>
-                  )}
-                  {o.notes && <p className="mt-2 text-stone-600">{o.notes}</p>}
+                  <div className="p-5">
+                    <h3 className="text-2xl font-bold">{o.name}</h3>
+                    {o.color && (
+                      <p className="text-stone-500">{COLOR_LABELS[o.color]}</p>
+                    )}
+                    {o.moves && (
+                      <p className="mt-2 font-mono text-sm text-stone-700">
+                        {o.moves}
+                      </p>
+                    )}
+                    {o.notes && <p className="mt-2 text-stone-600">{o.notes}</p>}
+                  </div>
                 </article>
               ))}
             </div>

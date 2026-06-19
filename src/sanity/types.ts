@@ -1,7 +1,6 @@
 import type {SanityImageSource} from '@sanity/image-url'
 
 export type Chess = {
-  photo: SanityImageSource | null
   rating: number | null
   accounts: {
     _key: string
@@ -15,6 +14,7 @@ export type Chess = {
     color: 'white' | 'black' | 'both' | null
     moves: string | null
     notes: string | null
+    photo: SanityImageSource | null
   }[] | null
   tournamentsWon: {
     _key: string

@@ -8,13 +8,6 @@ export const chessProfile = defineType({
   icon: ColorWheelIcon,
   fields: [
     defineField({
-      name: 'photo',
-      title: 'Photo',
-      type: 'image',
-      options: {hotspot: true},
-      fields: [defineField({name: 'alt', type: 'string', title: 'Alt text'})],
-    }),
-    defineField({
       name: 'rating',
       title: 'Current rating',
       type: 'number',
@@ -88,10 +81,17 @@ export const chessProfile = defineType({
               type: 'string',
               description: 'e.g. 1.e4 c5 2.Nf3 d6',
             }),
+            defineField({
+              name: 'photo',
+              title: 'Photo',
+              type: 'image',
+              options: {hotspot: true},
+              fields: [defineField({name: 'alt', type: 'string', title: 'Alt text'})],
+            }),
             defineField({name: 'notes', type: 'text', rows: 2}),
           ],
           preview: {
-            select: {title: 'name', subtitle: 'color'},
+            select: {title: 'name', subtitle: 'color', media: 'photo'},
           },
         }),
       ],
