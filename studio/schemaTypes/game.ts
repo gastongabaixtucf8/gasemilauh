@@ -50,6 +50,12 @@ export const game = defineType({
       validation: (rule) => rule.min(0).max(10),
     }),
     defineField({
+      name: 'hoursPlayed',
+      title: 'Hours played',
+      type: 'number',
+      validation: (rule) => rule.min(0),
+    }),
+    defineField({
       name: 'records',
       title: 'My records',
       type: 'text',

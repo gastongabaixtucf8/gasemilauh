@@ -33,6 +33,7 @@ export type Game = {
   status: 'playing' | 'completed' | 'wishlist'
   platform: string | null
   rating: number | null
+  hoursPlayed: number | null
   records: string | null
   notes: string | null
   photo: SanityImageSource | null

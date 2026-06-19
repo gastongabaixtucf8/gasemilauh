@@ -14,7 +14,7 @@ export const CHESS_QUERY = defineQuery(`
 
 export const GAMES_QUERY = defineQuery(`
   *[_type == "game"] | order(rating desc, title asc){
-    _id, title, "slug": slug.current, status, platform, rating, records, notes,
+    _id, title, "slug": slug.current, status, platform, rating, hoursPlayed, records, notes,
     photo
   }
 `)

@@ -27,6 +27,9 @@ function GameCard({game}: {game: Game}) {
           {game.rating != null && (
             <span className="text-yellow-300">★ {game.rating}/10</span>
           )}
+          {game.hoursPlayed != null && (
+            <span className="text-cyan-300">⏱ {game.hoursPlayed}h</span>
+          )}
         </div>
         {game.records && (
           <p className="mt-3 text-[10px] leading-relaxed text-emerald-300">
