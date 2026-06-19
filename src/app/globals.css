@@ -483,7 +483,8 @@ body {
   .ember,
   .glow-flicker,
   .spark-float,
-  .focus-pulse {
+  .focus-pulse,
+  .flame-flicker {
     animation: none;
   }
 }
@@ -510,13 +511,37 @@ body {
   background-size: 44px 44px, 44px 44px, 100% 100%;
 }
 
-/* Manga: visible screentone + diagonal tone over paper white */
+/* Manga: dark, fiery shounen style — red moon glow + blazing fire from below */
 .bg-manga-page {
-  background-color: #f3f3f1;
+  background-color: #140a08;
   background-image:
-    radial-gradient(rgba(0, 0, 0, 0.16) 1.4px, transparent 1.7px),
-    repeating-linear-gradient(45deg, rgba(0, 0, 0, 0.05) 0 1px, transparent 1px 8px);
-  background-size: 12px 12px, 12px 12px;
+    radial-gradient(circle at 14% 16%, rgba(220, 38, 38, 0.5), transparent 24%),
+    radial-gradient(120% 75% at 50% 120%, rgba(234, 88, 12, 0.45), transparent 60%),
+    radial-gradient(rgba(251, 146, 60, 0.06) 1px, transparent 1px);
+  background-size: 100% 100%, 100% 100%, 7px 7px;
+  background-attachment: fixed, fixed, scroll;
+}
+.fire-text {
+  background: linear-gradient(180deg, #fde047 0%, #fb923c 45%, #dc2626 85%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  filter: drop-shadow(0 0 10px rgba(234, 88, 12, 0.6));
+}
+@keyframes flame-flicker {
+  0%,
+  100% {
+    opacity: 0.8;
+    transform: scaleY(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scaleY(1.08);
+  }
+}
+.flame-flicker {
+  transform-origin: bottom;
+  animation: flame-flicker 1.6s ease-in-out infinite;
 }
 
 /* Warhammer: grimdark with a smouldering red glow anchored to the viewport */

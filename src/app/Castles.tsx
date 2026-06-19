@@ -133,78 +133,72 @@ export function GamesCastle({width}: CastleProps) {
   );
 }
 
-/** Manga — a pretty anime sky-castle: tiered pagoda on a floating island. */
+/** Manga — a dark, flame-wreathed fortress under a red moon, on a charred island. */
 export function MangaCastle({width}: CastleProps) {
-  const white = "#fffdf7";
-  const ink = "#3a3340";
-  const roof = "#2546a8";
-  const roofD = "#1b3582";
-  const gold = "#e8c14a";
-  const lit = "#fcd34d";
-  const pink = "#f9a8d4";
-  const rose = "#ec4899";
-  const skin = "#f2c79b";
-  const trunk = "#7a5230";
+  const stone = "#26232b";
+  const stoneD = "#161419";
+  const stoneL = "#3a3640";
+  const roof = "#7a1d1d";
+  const roofD = "#4a1010";
+  const lit = "#fb923c";
+  const red = "#dc2626";
+  const orange = "#f97316";
+  const yellow = "#fde047";
   return (
     <Svg width={width}>
-      {/* floating island */}
-      <ellipse cx="16" cy="29" rx="15" ry="3" fill="#86efac" stroke="#16a34a" strokeWidth="0.4" />
-      <polygon points="2,29 30,29 24,34 8,34" fill="#9c6b3f" />
-      <polygon points="8,34 24,34 16,37" fill="#7a5230" />
-      <rect x="6" y="36" width="1.5" height="1.5" fill="#9c6b3f" />
-      <rect x="25" y="35" width="1.5" height="1.5" fill="#9c6b3f" />
+      {/* red moon behind */}
+      <circle cx="3" cy="2" r="6" fill={red} />
+      <circle cx="3" cy="2" r="6" fill="none" stroke="#7f1d1d" strokeWidth="0.5" />
 
-      {/* cherry blossom tree on the island */}
-      <rect x="4" y="24" width="1" height="5" fill={trunk} />
-      <circle cx="3.5" cy="23" r="2" fill={pink} />
-      <circle cx="5.5" cy="23.5" r="1.8" fill={rose} />
-      <circle cx="4.5" cy="21.5" r="1.6" fill={pink} />
+      {/* charred floating island */}
+      <ellipse cx="16" cy="29" rx="15" ry="3" fill="#2a2320" />
+      <polygon points="2,29 30,29 24,34 8,34" fill="#1c1714" />
+      <polygon points="8,34 24,34 16,37" fill="#120e0c" />
+      {/* ember cracks in the rock */}
+      <line x1="10" y1="30" x2="13" y2="33" stroke={orange} strokeWidth="0.4" />
+      <line x1="20" y1="30" x2="18" y2="33" stroke={orange} strokeWidth="0.4" />
+
+      {/* flames licking up behind the keep */}
+      <polygon points="5,29 7,20 9,29" fill={red} className="flame-flicker" />
+      <polygon points="23,29 25,19 27,29" fill={red} className="flame-flicker" />
+      <polygon points="6,29 7,23 8.5,29" fill={orange} />
+      <polygon points="23.5,29 25,22 26.5,29" fill={orange} />
 
       {/* base tier */}
-      <rect x="9" y="20" width="14" height="9" fill={white} stroke={ink} strokeWidth="0.5" />
+      <rect x="9" y="20" width="14" height="9" fill={stone} stroke={stoneD} strokeWidth="0.5" />
+      <rect x="9" y="20" width="1" height="9" fill={stoneD} />
+      <rect x="22" y="20" width="1" height="9" fill={stoneL} />
       <rect x="11" y="23" width="2" height="2" fill={lit} />
       <rect x="19" y="23" width="2" height="2" fill={lit} />
-      <rect x="15" y="25" width="2" height="4" fill={roofD} />
+      <rect x="15" y="25" width="2" height="4" fill="#0e0c0a" />
       {/* base roof */}
-      <polygon points="6,20 9,16 23,16 26,20" fill={roof} stroke={ink} strokeWidth="0.4" />
+      <polygon points="6,20 9,16 23,16 26,20" fill={roof} stroke={roofD} strokeWidth="0.4" />
       <polygon points="6,20 4.5,18 7,19" fill={roof} />
       <polygon points="26,20 27.5,18 25,19" fill={roof} />
-      <rect x="6" y="19.4" width="20" height="0.8" fill={roofD} />
 
       {/* mid tier */}
-      <rect x="11" y="13" width="10" height="4" fill={white} stroke={ink} strokeWidth="0.5" />
+      <rect x="11" y="13" width="10" height="4" fill={stone} stroke={stoneD} strokeWidth="0.5" />
       <rect x="13" y="14" width="2" height="2" fill={lit} />
       <rect x="17" y="14" width="2" height="2" fill={lit} />
-      {/* mid roof */}
-      <polygon points="8,13 11,9.5 21,9.5 24,13" fill={roof} stroke={ink} strokeWidth="0.4" />
+      <polygon points="8,13 11,9.5 21,9.5 24,13" fill={roof} stroke={roofD} strokeWidth="0.4" />
       <polygon points="8,13 6.5,11 9,12" fill={roof} />
       <polygon points="24,13 25.5,11 23,12" fill={roof} />
-      <rect x="8" y="12.4" width="16" height="0.8" fill={roofD} />
 
       {/* top tier */}
-      <rect x="13" y="6" width="6" height="3.5" fill={white} stroke={ink} strokeWidth="0.5" />
+      <rect x="13" y="6" width="6" height="3.5" fill={stone} stroke={stoneD} strokeWidth="0.5" />
       <rect x="15" y="7" width="2" height="2" fill={lit} />
-      {/* top roof */}
-      <polygon points="10,6 13,3 19,3 22,6" fill={roof} stroke={ink} strokeWidth="0.4" />
+      <polygon points="10,6 13,3 19,3 22,6" fill={roof} stroke={roofD} strokeWidth="0.4" />
       <polygon points="10,6 8.5,4 11,5" fill={roof} />
       <polygon points="22,6 23.5,4 21,5" fill={roof} />
-      {/* golden finial */}
-      <rect x="15.5" y="0.5" width="1" height="3" fill={gold} />
-      <circle cx="16" cy="0.5" r="1" fill={gold} />
+      {/* flaming finial */}
+      <polygon points="14.5,3 16,-1 17.5,3" fill={orange} className="flame-flicker" />
+      <polygon points="15.2,3 16,0.5 16.8,3" fill={yellow} />
 
-      {/* sparkles */}
-      <path d="M28 4 L28.7 5.3 L30 6 L28.7 6.7 L28 8 L27.3 6.7 L26 6 L27.3 5.3 Z" fill={rose} />
-      <path d="M-4 8 L-3.3 9.3 L-2 10 L-3.3 10.7 L-4 12 L-4.7 10.7 L-6 10 L-4.7 9.3 Z" fill={pink} />
-      <circle cx="30" cy="14" r="0.6" fill={rose} />
-      <circle cx="-3" cy="2" r="0.6" fill={pink} />
-
-      {/* little people on the island */}
-      <rect x="19" y="26" width="1.6" height="0.8" fill={ink} />
-      <circle cx="19.8" cy="27" r="0.9" fill={skin} />
-      <rect x="19" y="28" width="1.6" height="2" fill={rose} />
-      <rect x="23" y="26" width="1.6" height="0.8" fill={pink} />
-      <circle cx="23.8" cy="27" r="0.9" fill={skin} />
-      <rect x="23" y="28" width="1.6" height="2" fill="#38bdf8" />
+      {/* foreground flames rising over the base */}
+      <polygon points="9,29 11,24 13,29" fill={orange} className="flame-flicker" />
+      <polygon points="14,29 16,23 18,29" fill={red} className="flame-flicker" />
+      <polygon points="19,29 21,25 23,29" fill={orange} className="flame-flicker" />
+      <polygon points="14.7,29 16,26 17.3,29" fill={yellow} />
     </Svg>
   );
 }
