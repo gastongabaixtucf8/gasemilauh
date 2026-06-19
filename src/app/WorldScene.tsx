@@ -54,14 +54,34 @@ export default function WorldScene({
       />
 
       {/* ---- CASTLES standing on the horizon, rising from the ground ---- */}
-      <div className="absolute inset-x-0 bottom-[40%] z-10 mx-auto flex max-w-5xl flex-wrap items-end justify-center gap-x-4 gap-y-10 px-4 sm:gap-x-10">
+      <div className="absolute inset-x-0 bottom-[40%] z-10 mx-auto flex max-w-6xl flex-wrap items-end justify-center gap-x-12 gap-y-12 px-4 sm:gap-x-24">
         {ROOMS.map((room, i) => {
           const CastleComp = CASTLES[room.href];
           const delay = {animationDelay: `${i * 160}ms`};
           return (
-            <div key={room.href} className="relative flex flex-col items-center">
-              {/* grassy hill at the castle's base on the horizon */}
-              <div className="absolute bottom-0 -z-10 h-10 w-32 rounded-[50%] bg-emerald-600" />
+            <Link
+              key={room.href}
+              href={room.href}
+              tabIndex={arrived ? 0 : -1}
+              aria-label={`Enter ${room.label}`}
+              className={`group relative block transition-transform duration-200 ${
+                arrived
+                  ? "pointer-events-auto hover:-translate-y-1"
+                  : "pointer-events-none"
+              }`}
+            >
+              {/* selection pointer above the castle (on hover / focus) */}
+              <span className="pointer-bounce pointer-events-none absolute bottom-full left-1/2 mb-1 -translate-x-1/2 whitespace-nowrap text-center opacity-0 transition-opacity duration-150 group-hover:opacity-100 group-focus-visible:opacity-100">
+                <span
+                  className="block rounded border-2 bg-black/85 px-2 py-1 text-[8px] uppercase tracking-widest text-white sm:text-[9px]"
+                  style={{borderColor: room.color, fontFamily: "var(--font-pixel)"}}
+                >
+                  {room.label}
+                </span>
+                <span className="text-sm" style={{color: room.color}}>
+                  ▼
+                </span>
+              </span>
               {/* ground mask: the castle emerges from its bottom edge */}
               <div className="overflow-hidden">
                 <div
@@ -71,25 +91,7 @@ export default function WorldScene({
                   <CastleComp />
                 </div>
               </div>
-              {/* ENTER button hangs just below, onto the ground */}
-              <Link
-                href={room.href}
-                tabIndex={arrived ? 0 : -1}
-                aria-label={`Enter ${room.label}`}
-                style={{
-                  borderColor: room.color,
-                  color: room.color,
-                  fontFamily: "var(--font-pixel)",
-                  ...(arrived ? delay : {}),
-                }}
-                className={`absolute top-full mt-2 rounded-sm border-2 bg-black/80 px-2 py-1 text-center text-[9px] uppercase leading-tight tracking-widest transition-opacity duration-500 hover:bg-black sm:px-3 sm:text-[10px] ${
-                  arrived ? "opacity-100" : "pointer-events-none opacity-0"
-                }`}
-              >
-                <span className="block text-white">{room.label}</span>
-                <span className="block">▶ Enter</span>
-              </Link>
-            </div>
+            </Link>
           );
         })}
       </div>

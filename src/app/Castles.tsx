@@ -63,10 +63,10 @@ export function ChessCastle({width}: CastleProps) {
 
 /** Video Games — neon arcade keep with floating game items (coin, heart, star). */
 export function GamesCastle({width}: CastleProps) {
-  const body = "#312e81";
-  const bodyD = "#1e1b4b";
-  const neon = "#22d3ee";
-  const pink = "#d946ef";
+  const body = "#1f2937";
+  const bodyD = "#0f172a";
+  const neon = "#4ade80";
+  const pink = "#f472b6";
   return (
     <Svg width={width}>
       <rect x="2" y="15" width="11" height="13" fill={body} stroke={neon} strokeWidth="0.4" />
@@ -100,10 +100,13 @@ export function GamesCastle({width}: CastleProps) {
   );
 }
 
-/** Manga — stark white castle, heavy ink outlines, screentone + speed lines. */
+/** Manga — colourful anime castle: heavy ink outlines, screentone, speed lines. */
 export function MangaCastle({width}: CastleProps) {
-  const white = "#fbfbfb";
-  const ink = "#111111";
+  const white = "#fffdf7";
+  const ink = "#1a1a1a";
+  const pink = "#f472b6";
+  const rose = "#ec4899";
+  const sky = "#38bdf8";
   return (
     <Svg width={width}>
       {/* manga speed lines bursting behind the keep */}
@@ -121,20 +124,29 @@ export function MangaCastle({width}: CastleProps) {
 
       <rect x="2" y="15" width="11" height="13" fill={white} stroke={ink} strokeWidth="0.6" />
       <rect x="19" y="15" width="11" height="13" fill={white} stroke={ink} strokeWidth="0.6" />
+      {/* pink crenellation caps */}
       {[2, 5, 8, 11, 20, 23, 26, 29].map((x) => (
-        <rect key={x} x={x} y="13" width="2" height="2" fill={white} stroke={ink} strokeWidth="0.5" />
+        <rect key={x} x={x} y="13" width="2" height="2" fill={pink} stroke={ink} strokeWidth="0.5" />
       ))}
       <rect x="10" y="6" width="12" height="22" fill={white} stroke={ink} strokeWidth="0.7" />
+      {/* rose roof band on the keep */}
+      <rect x="10" y="6" width="12" height="2" fill={rose} />
       {[10, 13, 16, 19].map((x) => (
-        <rect key={x} x={x} y="4" width="2" height="2" fill={white} stroke={ink} strokeWidth="0.5" />
+        <rect key={x} x={x} y="4" width="2" height="2" fill={pink} stroke={ink} strokeWidth="0.5" />
       ))}
       {/* screentone dots */}
       {[11, 13, 15, 17, 19, 21].map((x) => (
         <circle key={x} cx={x} cy="11" r="0.5" fill={ink} />
       ))}
+      {/* sky-blue windows */}
+      <rect x="12" y="14" width="2" height="2" fill={sky} stroke={ink} strokeWidth="0.4" />
+      <rect x="18" y="14" width="2" height="2" fill={sky} stroke={ink} strokeWidth="0.4" />
       <rect x="14" y="22" width="4" height="6" fill={ink} />
+      {/* pink banner */}
+      <rect x="16" y="0" width="1" height="4" fill={ink} />
+      <polygon points="17,0 23,1.5 17,3" fill={pink} stroke={ink} strokeWidth="0.4" />
       {/* manga sparkle */}
-      <path d="M26 6 L26.7 7.3 L28 8 L26.7 8.7 L26 10 L25.3 8.7 L24 8 L25.3 7.3 Z" fill={ink} />
+      <path d="M26 6 L26.7 7.3 L28 8 L26.7 8.7 L26 10 L25.3 8.7 L24 8 L25.3 7.3 Z" fill={rose} />
     </Svg>
   );
 }
@@ -182,10 +194,24 @@ export function WarhammerCastle({width}: CastleProps) {
       <rect x="26" y="25" width="4" height="3" fill={slime} />
       <rect x="27" y="26" width="1" height="1" fill="#fff" />
       <rect x="29" y="26" width="1" height="1" fill="#fff" />
-      {/* a bat in the air */}
+      {/* a small red imp guarding the gate */}
+      <rect x="12" y="25" width="3" height="3" fill="#b91c1c" />
+      <polygon points="12,25 12.5,23.5 13,25" fill="#b91c1c" />
+      <polygon points="14,25 14.5,23.5 15,25" fill="#b91c1c" />
+      <rect x="12" y="26" width="1" height="1" fill="#fde047" />
+      <rect x="14" y="26" width="1" height="1" fill="#fde047" />
+      {/* a horned gargoyle perched on the left wall */}
+      <rect x="4" y="11" width="3" height="3" fill={stoneD} />
+      <polygon points="4,11 4.5,9.5 5,11" fill={stoneD} />
+      <polygon points="6,11 6.5,9.5 7,11" fill={stoneD} />
+      <rect x="4" y="12" width="1" height="1" fill="#ef4444" />
+      <rect x="6" y="12" width="1" height="1" fill="#ef4444" />
+      {/* two bats in the air */}
       <polygon points="24,8 26,6 26,8" fill={iron} />
       <polygon points="28,8 26,6 26,8" fill={iron} />
       <rect x="26" y="7" width="1" height="1" fill={iron} />
+      <polygon points="6,5 8,3.5 8,5" fill={iron} />
+      <polygon points="10,5 8,3.5 8,5" fill={iron} />
     </Svg>
   );
 }

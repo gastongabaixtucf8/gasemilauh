@@ -245,6 +245,20 @@ body {
   transform: translateY(120%);
 }
 
+/* ----- Selection pointer above a castle ----- */
+@keyframes pointer-bounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+.pointer-bounce {
+  animation: pointer-bounce 0.7s ease-in-out infinite;
+}
+
 /* ----- Twinkling stars ----- */
 @keyframes twinkle {
   0%,
@@ -333,7 +347,8 @@ body {
   .moon-body,
   .rise-from-ground,
   .stars,
-  .stars-2 {
+  .stars-2,
+  .pointer-bounce {
     animation: none;
   }
 }
