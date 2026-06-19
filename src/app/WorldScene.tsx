@@ -43,18 +43,9 @@ export default function WorldScene({
 
       {/* ---- GROUND ---- */}
       <div className="absolute inset-x-0 bottom-0 h-[40%] bg-gradient-to-b from-emerald-700 to-emerald-950" />
-      {/* dirt road towards the horizon */}
-      <div
-        className="absolute bottom-0 left-1/2 h-[40%] w-[78%] -translate-x-1/2 bg-[#6b5436]"
-        style={{clipPath: "polygon(43% 0, 57% 0, 100% 100%, 0 100%)"}}
-      />
-      <div
-        className="absolute bottom-0 left-1/2 h-[40%] w-[60%] -translate-x-1/2 bg-[#7d6342]"
-        style={{clipPath: "polygon(46% 0, 54% 0, 82% 100%, 18% 100%)"}}
-      />
 
-      {/* ---- CASTLES standing on the horizon, rising from the ground ---- */}
-      <div className="absolute inset-x-0 bottom-[40%] z-10 mx-auto flex max-w-6xl flex-wrap items-end justify-center gap-x-12 gap-y-12 px-4 sm:gap-x-24">
+      {/* ---- CASTLES standing on the horizon, each with a road leading up ---- */}
+      <div className="absolute inset-x-0 bottom-[40%] z-10 mx-auto flex max-w-7xl flex-wrap items-end justify-between gap-y-16 px-6 sm:px-10">
         {ROOMS.map((room, i) => {
           const CastleComp = CASTLES[room.href];
           const delay = {animationDelay: `${i * 160}ms`};
@@ -64,12 +55,21 @@ export default function WorldScene({
               href={room.href}
               tabIndex={arrived ? 0 : -1}
               aria-label={`Enter ${room.label}`}
-              className={`group relative block transition-transform duration-200 ${
-                arrived
-                  ? "pointer-events-auto hover:-translate-y-1"
-                  : "pointer-events-none"
+              className={`group relative block ${
+                arrived ? "pointer-events-auto" : "pointer-events-none"
               }`}
             >
+              {/* dirt road running from the foreground up to this castle */}
+              <span
+                aria-hidden
+                className="absolute left-1/2 top-full -z-10 -translate-x-1/2"
+                style={{
+                  height: "42vh",
+                  width: "70px",
+                  clipPath: "polygon(36% 0, 64% 0, 100% 100%, 0 100%)",
+                  backgroundImage: "linear-gradient(to bottom, #5a4530, #7d6342)",
+                }}
+              />
               {/* selection pointer above the castle (on hover / focus) */}
               <span className="pointer-bounce pointer-events-none absolute bottom-full left-1/2 mb-1 -translate-x-1/2 whitespace-nowrap text-center opacity-0 transition-opacity duration-150 group-hover:opacity-100 group-focus-visible:opacity-100">
                 <span
