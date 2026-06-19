@@ -52,6 +52,71 @@ body {
   mask-image: linear-gradient(to right, #000, transparent);
 }
 
+/* ----- Animated page effects ----- */
+/* Warhammer: rising embers + flickering glow */
+@keyframes ember-rise {
+  0% {
+    transform: translateY(0) translateX(0) scale(1);
+    opacity: 0;
+  }
+  12% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-80vh) translateX(var(--drift, 10px)) scale(0.3);
+    opacity: 0;
+  }
+}
+.ember {
+  animation: ember-rise linear infinite;
+}
+@keyframes glow-flicker {
+  0%,
+  100% {
+    opacity: 0.85;
+  }
+  25% {
+    opacity: 0.6;
+  }
+  50% {
+    opacity: 1;
+  }
+  75% {
+    opacity: 0.75;
+  }
+}
+.glow-flicker {
+  animation: glow-flicker 3.5s ease-in-out infinite;
+}
+
+/* Manga: drifting ink sparkles + a slow focus-line pulse */
+@keyframes spark-float {
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 0.25;
+  }
+  50% {
+    transform: translateY(-14px) rotate(25deg);
+    opacity: 1;
+  }
+}
+.spark-float {
+  animation: spark-float ease-in-out infinite;
+}
+@keyframes focus-pulse {
+  0%,
+  100% {
+    opacity: 0.1;
+  }
+  50% {
+    opacity: 0.22;
+  }
+}
+.focus-pulse {
+  animation: focus-pulse 4s ease-in-out infinite;
+}
+
 /* ----- Grimdark metal sheen (Warhammer room) ----- */
 .metal-sheen {
   background-image: linear-gradient(
@@ -414,7 +479,11 @@ body {
   .stars-2,
   .stars-3,
   .pointer-bounce,
-  .cloud {
+  .cloud,
+  .ember,
+  .glow-flicker,
+  .spark-float,
+  .focus-pulse {
     animation: none;
   }
 }

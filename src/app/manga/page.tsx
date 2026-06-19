@@ -16,6 +16,16 @@ const STATUS: Record<string, {jp: string; en: string}> = {
   wishlist: {jp: "欲しい", en: "WANT TO READ"},
 };
 
+// drifting ink sparkles (deterministic)
+const SPARKS = Array.from({length: 14}, (_, i) => ({
+  left: (i * 41 + 5) % 100,
+  top: (i * 27 + 9) % 100,
+  size: 10 + (i % 4) * 6,
+  dur: 3 + (i % 4),
+  delay: -((i * 0.9) % 4),
+  glyph: i % 2 === 0 ? "✦" : "✧",
+}));
+
 function MangaPanel({manga}: {manga: Manga}) {
   const img = manga.cover
     ? urlForImage(manga.cover).width(400).height(560).fit("crop").url()
@@ -86,8 +96,26 @@ export default async function MangaPage() {
   const wishlist = manga.filter((m) => m.status === "wishlist");
 
   return (
-    <main className="bg-manga-page flex-1 text-black" style={mincho}>
-      <div className="mx-auto max-w-6xl px-6 py-12">
+    <main className="bg-manga-page relative flex-1 overflow-hidden text-black" style={mincho}>
+      {/* drifting ink sparkles */}
+      <div className="pointer-events-none fixed inset-0 z-0">
+        {SPARKS.map((s, i) => (
+          <span
+            key={i}
+            className="spark-float absolute text-black/70"
+            style={{
+              left: `${s.left}%`,
+              top: `${s.top}%`,
+              fontSize: s.size,
+              animationDuration: `${s.dur}s`,
+              animationDelay: `${s.delay}s`,
+            }}
+          >
+            {s.glyph}
+          </span>
+        ))}
+      </div>
+      <div className="relative z-10 mx-auto max-w-6xl px-6 py-12">
         <Link
           href="/"
           className="text-sm tracking-widest text-neutral-500 hover:text-black"
@@ -97,7 +125,7 @@ export default async function MangaPage() {
 
         {/* dramatic title block with radiating focus lines */}
         <header className="relative mt-6 overflow-hidden border-y-4 border-black py-10">
-          <div className="manga-focus pointer-events-none absolute inset-0 opacity-15" />
+          <div className="manga-focus focus-pulse pointer-events-none absolute inset-0" />
           <div className="relative flex items-end justify-between gap-4">
             <div>
               <p className="text-sm tracking-[0.3em] text-neutral-500">MANGA</p>

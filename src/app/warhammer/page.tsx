@@ -7,6 +7,15 @@ import type {Figurine, Strategy} from "@/sanity/types";
 
 export const metadata = {title: "Warhammer — gasemilauh"};
 
+// rising ember particles (deterministic)
+const EMBERS = Array.from({length: 18}, (_, i) => ({
+  left: (i * 53 + 7) % 100,
+  size: 2 + (i % 3),
+  dur: 6 + (i % 5),
+  delay: -((i * 1.3) % 7),
+  drift: (i % 2 === 0 ? 1 : -1) * (10 + (i % 4) * 8),
+}));
+
 const STATUS_LABELS: Record<string, string> = {
   painted: "Painted",
   owned: "Unpainted",
@@ -62,8 +71,27 @@ export default async function WarhammerPage() {
   const wishlist = figurines.filter((f) => f.status === "wishlist");
 
   return (
-    <main className="bg-grimdark flex-1 text-zinc-200">
-      <div className="mx-auto max-w-6xl px-6 py-12">
+    <main className="bg-grimdark relative flex-1 overflow-hidden text-zinc-200">
+      {/* flickering hellish glow */}
+      <div className="glow-flicker pointer-events-none fixed inset-0 z-0 bg-[radial-gradient(80%_50%_at_50%_100%,rgba(220,38,38,0.35),transparent_60%)]" />
+      {/* rising embers */}
+      <div className="pointer-events-none fixed inset-0 z-0">
+        {EMBERS.map((e, i) => (
+          <span
+            key={i}
+            className="ember absolute bottom-0 rounded-full bg-amber-400 shadow-[0_0_6px_2px_rgba(251,146,60,0.7)]"
+            style={{
+              left: `${e.left}%`,
+              width: e.size,
+              height: e.size,
+              animationDuration: `${e.dur}s`,
+              animationDelay: `${e.delay}s`,
+              ["--drift" as string]: `${e.drift}px`,
+            }}
+          />
+        ))}
+      </div>
+      <div className="relative z-10 mx-auto max-w-6xl px-6 py-12">
         <Link
           href="/"
           className="text-sm uppercase tracking-widest text-amber-500/80 hover:text-amber-300"

@@ -4,7 +4,10 @@ export const CHESS_QUERY = defineQuery(`
   *[_type == "chessProfile"][0]{
     rating,
     accounts[]{ _key, platform, username, url },
-    favoriteOpenings[]{ _key, name, color, moves, notes, photo },
+    favoriteOpenings[]{
+      _key, name, color, moves, notes, photo,
+      "photoAspect": photo.asset->metadata.dimensions.aspectRatio
+    },
     tournamentsWon[]{ _key, name, date, location, notes }
   }
 `)

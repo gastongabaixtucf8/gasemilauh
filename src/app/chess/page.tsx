@@ -86,11 +86,11 @@ export default async function ChessPage() {
                 >
                   {o.photo && (
                     <Image
-                      src={urlForImage(o.photo).width(640).height(360).fit("crop").url()}
+                      src={urlForImage(o.photo).width(800).fit("max").url()}
                       alt={o.name}
-                      width={640}
-                      height={360}
-                      className="h-40 w-full border-b border-stone-300 object-cover"
+                      width={800}
+                      height={Math.round(800 / (o.photoAspect ?? 1.5))}
+                      className="h-auto w-full border-b border-stone-300 bg-stone-100"
                     />
                   )}
                   <div className="p-5">

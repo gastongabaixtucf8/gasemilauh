@@ -15,6 +15,7 @@ export type Chess = {
     moves: string | null
     notes: string | null
     photo: SanityImageSource | null
+    photoAspect: number | null
   }[] | null
   tournamentsWon: {
     _key: string
