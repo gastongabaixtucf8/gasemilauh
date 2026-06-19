@@ -1,15 +1,14 @@
 "use client";
 
 import {useEffect, useState} from "react";
-import RetroIntro from "./RetroIntro";
 import WorldScene from "./WorldScene";
 
-type Phase = "intro" | "walking" | "arrived";
+type Phase = "talking" | "arrived";
 
 export default function Home() {
-  const [phase, setPhase] = useState<Phase>("intro");
+  const [phase, setPhase] = useState<Phase>("talking");
 
-  // Reduced-motion: skip the cutscene and walk; show the towers right away.
+  // Reduced-motion: skip the dialogue and reveal the castles right away.
   useEffect(() => {
     if (
       typeof window !== "undefined" &&
@@ -19,17 +18,13 @@ export default function Home() {
     }
   }, []);
 
-  // After Gaston starts walking, let him arrive when the walk finishes.
-  useEffect(() => {
-    if (phase !== "walking") return;
-    const t = setTimeout(() => setPhase("arrived"), 3500);
-    return () => clearTimeout(t);
-  }, [phase]);
-
   return (
     <main className="flex-1">
-      {phase === "intro" && <RetroIntro onDone={() => setPhase("walking")} />}
-      <WorldScene walk={phase === "walking"} arrived={phase === "arrived"} />
+      <WorldScene
+        talking={phase === "talking"}
+        arrived={phase === "arrived"}
+        onTalkDone={() => setPhase("arrived")}
+      />
     </main>
   );
 }

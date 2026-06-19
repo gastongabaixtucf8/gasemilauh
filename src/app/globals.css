@@ -229,6 +229,60 @@ body {
   animation: tower-rise 0.6s ease-out both;
 }
 
+/* ----- Day / night cycle ----- */
+@keyframes nightfall {
+  0%,
+  100% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+@keyframes sun-arc {
+  0% {
+    transform: translate(-50%, 30px);
+    opacity: 1;
+  }
+  40% {
+    transform: translate(-50%, -10px);
+    opacity: 1;
+  }
+  50%,
+  100% {
+    transform: translate(-50%, 40px);
+    opacity: 0;
+  }
+}
+@keyframes moon-arc {
+  0%,
+  40% {
+    transform: translate(-50%, 40px);
+    opacity: 0;
+  }
+  50% {
+    transform: translate(-50%, 0);
+    opacity: 1;
+  }
+  90% {
+    transform: translate(-50%, -10px);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-50%, 40px);
+    opacity: 0;
+  }
+}
+.sky-night {
+  animation: nightfall 44s ease-in-out infinite;
+}
+.sun-body {
+  animation: sun-arc 44s ease-in-out infinite;
+}
+.moon-body {
+  animation: moon-arc 44s ease-in-out infinite;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .gaston-pop,
   .gaston-bob,
@@ -240,7 +294,10 @@ body {
   .blink-arrow,
   .npc-walk,
   .npc-step,
-  .tower-rise {
+  .tower-rise,
+  .sky-night,
+  .sun-body,
+  .moon-body {
     animation: none;
   }
 }

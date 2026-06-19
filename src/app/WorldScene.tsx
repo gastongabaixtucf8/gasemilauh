@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import PixelNpc from "./PixelNpc";
+import Dialogue from "./Dialogue";
 
 type Room = {
   href: string;
@@ -17,104 +18,131 @@ const ROOMS: Room[] = [
   {href: "/warhammer", label: "Warhammer", color: "#d4af37", roof: "#7a1d1d"},
 ];
 
-/** A pixel-art castle tower with a coloured banner. */
-function Tower({color, roof}: {color: string; roof: string}) {
+/** A pixel-art castle: a central keep flanked by crenellated walls. */
+function Castle({color, roof}: {color: string; roof: string}) {
   const stone = "#8b8f96";
-  const stoneDark = "#6c7077";
-  const stoneLight = "#a7abb1";
+  const stoneD = "#6c7077";
+  const stoneL = "#a7abb1";
+  const slit = "#1b2a3a";
   return (
     <svg
-      viewBox="0 0 16 30"
-      width="84"
+      viewBox="0 0 32 28"
+      width="130"
       className="pixel-sprite drop-shadow-[0_6px_0_rgba(0,0,0,0.4)]"
       role="img"
       aria-hidden="true"
     >
-      {/* body */}
-      <rect x="4" y="9" width="8" height="21" fill={stone} />
-      <rect x="4" y="9" width="1" height="21" fill={stoneDark} />
-      <rect x="11" y="9" width="1" height="21" fill={stoneLight} />
-      {/* crenellations */}
-      <rect x="4" y="8" width="2" height="1" fill={stone} />
-      <rect x="7" y="8" width="2" height="1" fill={stone} />
-      <rect x="10" y="8" width="2" height="1" fill={stone} />
-      <rect x="4" y="7" width="2" height="1" fill={stone} />
-      <rect x="10" y="7" width="2" height="1" fill={stone} />
+      {/* side walls */}
+      <rect x="1" y="13" width="13" height="15" fill={stone} />
+      <rect x="18" y="13" width="13" height="15" fill={stone} />
+      <rect x="1" y="13" width="13" height="1" fill={stoneL} />
+      <rect x="18" y="13" width="13" height="1" fill={stoneL} />
+      {/* wall crenellations */}
+      <rect x="1" y="12" width="2" height="1" fill={stone} />
+      <rect x="4" y="12" width="2" height="1" fill={stone} />
+      <rect x="7" y="12" width="2" height="1" fill={stone} />
+      <rect x="10" y="12" width="2" height="1" fill={stone} />
+      <rect x="20" y="12" width="2" height="1" fill={stone} />
+      <rect x="23" y="12" width="2" height="1" fill={stone} />
+      <rect x="26" y="12" width="2" height="1" fill={stone} />
+      <rect x="29" y="12" width="2" height="1" fill={stone} />
+      {/* wall arrow slits */}
+      <rect x="6" y="16" width="1" height="2" fill={slit} />
+      <rect x="25" y="16" width="1" height="2" fill={slit} />
+
+      {/* central keep */}
+      <rect x="10" y="5" width="12" height="23" fill={stone} />
+      <rect x="10" y="5" width="1" height="23" fill={stoneD} />
+      <rect x="21" y="5" width="1" height="23" fill={stoneL} />
+      {/* keep crenellations */}
+      <rect x="10" y="4" width="2" height="1" fill={stone} />
+      <rect x="13" y="4" width="2" height="1" fill={stone} />
+      <rect x="16" y="4" width="2" height="1" fill={stone} />
+      <rect x="19" y="4" width="2" height="1" fill={stone} />
       {/* brick lines */}
-      <rect x="4" y="14" width="8" height="1" fill={stoneDark} />
-      <rect x="4" y="20" width="8" height="1" fill={stoneDark} />
+      <rect x="10" y="11" width="12" height="1" fill={stoneD} />
+      <rect x="10" y="17" width="12" height="1" fill={stoneD} />
       {/* windows */}
-      <rect x="6" y="11" width="1" height="2" fill="#1b2a3a" />
-      <rect x="9" y="11" width="1" height="2" fill="#1b2a3a" />
-      {/* door */}
-      <rect x="7" y="26" width="2" height="4" fill="#2b2320" />
-      {/* flag pole + banner */}
-      <rect x="8" y="1" width="1" height="7" fill="#c9c9c9" />
-      <polygon points="9,1 14,2.5 9,4" fill={color} />
-      <polygon points="9,1 14,2.5 9,4" fill="none" stroke={roof} strokeWidth="0.3" />
+      <rect x="12" y="8" width="1" height="2" fill={slit} />
+      <rect x="19" y="8" width="1" height="2" fill={slit} />
+      {/* gate */}
+      <rect x="14" y="22" width="4" height="6" fill="#2b2320" />
+      <rect x="14" y="21" width="4" height="1" fill="#2b2320" />
+      {/* banner */}
+      <rect x="16" y="0" width="1" height="5" fill="#c9c9c9" />
+      <polygon points="17,0 23,2 17,4" fill={color} />
+      <polygon points="17,0 23,2 17,4" fill="none" stroke={roof} strokeWidth="0.4" />
     </svg>
   );
 }
 
 export default function WorldScene({
-  walk,
+  talking,
   arrived,
+  onTalkDone,
 }: {
-  walk: boolean;
+  talking: boolean;
   arrived: boolean;
+  onTalkDone: () => void;
 }) {
   return (
     <section className="relative h-screen w-full overflow-hidden">
-      {/* sky */}
-      <div className="absolute inset-x-0 top-0 h-[58%] bg-gradient-to-b from-indigo-950 via-purple-900 to-orange-300" />
-      {/* sun glow on the horizon */}
-      <div className="absolute left-1/2 top-[44%] h-40 w-40 -translate-x-1/2 rounded-full bg-amber-200/70 blur-2xl" />
-      {/* ground */}
-      <div className="absolute inset-x-0 bottom-0 h-[42%] bg-gradient-to-b from-emerald-900 to-emerald-950" />
-      {/* road (trapezoid towards the horizon) */}
-      <div
-        className="absolute bottom-0 left-1/2 h-[42%] w-[80%] -translate-x-1/2 bg-neutral-700"
-        style={{clipPath: "polygon(42% 0, 58% 0, 100% 100%, 0 100%)"}}
-      />
-      {/* dashed centre line */}
-      <div
-        className="absolute bottom-0 left-1/2 h-[42%] w-[3%] -translate-x-1/2"
-        style={{
-          clipPath: "polygon(46% 0, 54% 0, 70% 100%, 30% 100%)",
-          backgroundImage:
-            "repeating-linear-gradient(to top, #facc15 0 6%, transparent 6% 14%)",
-        }}
-      />
+      {/* ---- SKY: day layer ---- */}
+      <div className="absolute inset-x-0 top-0 h-[60%] bg-gradient-to-b from-sky-500 via-sky-300 to-amber-100" />
+      {/* sun */}
+      <div className="sun-body absolute left-1/2 top-[34%] h-20 w-20 rounded-full bg-amber-200 shadow-[0_0_60px_30px_rgba(254,240,138,0.7)]" />
 
-      {/* title */}
-      <div className="absolute inset-x-0 top-6 z-10 text-center">
-        <p className="font-mono text-[10px] uppercase tracking-[0.4em] text-white/60">
-          Select a world
-        </p>
-        <h1 className="text-3xl font-black tracking-tight text-white drop-shadow sm:text-5xl">
-          gasemilauh
-        </h1>
+      {/* ---- SKY: night layer (fades in as time passes) ---- */}
+      <div
+        className="sky-night absolute inset-x-0 top-0 h-[60%] bg-gradient-to-b from-slate-950 via-indigo-950 to-indigo-800"
+        style={{
+          backgroundImage:
+            "radial-gradient(1.5px 1.5px at 20% 30%, #fff, transparent), radial-gradient(1.5px 1.5px at 70% 20%, #fff, transparent), radial-gradient(1px 1px at 40% 50%, #fff, transparent), radial-gradient(1.5px 1.5px at 85% 40%, #fff, transparent), radial-gradient(1px 1px at 55% 15%, #fff, transparent), radial-gradient(1px 1px at 10% 60%, #fff, transparent), radial-gradient(1.5px 1.5px at 90% 65%, #fff, transparent), linear-gradient(to bottom, #020617, #1e1b4b 60%, #3730a3)",
+        }}
+      >
+        {/* moon */}
+        <div className="moon-body absolute left-1/2 top-[28%] h-14 w-14 rounded-full bg-stone-100 shadow-[0_0_40px_15px_rgba(255,255,255,0.4)]" />
       </div>
 
-      {/* four towers along the horizon */}
+      {/* ---- GROUND ---- */}
+      <div className="absolute inset-x-0 bottom-0 h-[40%] bg-gradient-to-b from-emerald-700 to-emerald-950" />
+      {/* dirt road towards the horizon */}
       <div
-        className={`absolute inset-x-0 top-[24%] z-10 flex items-end justify-center gap-3 px-3 transition-opacity duration-700 sm:gap-8 ${
+        className="absolute bottom-0 left-1/2 h-[40%] w-[78%] -translate-x-1/2 bg-[#6b5436]"
+        style={{clipPath: "polygon(43% 0, 57% 0, 100% 100%, 0 100%)"}}
+      />
+      <div
+        className="absolute bottom-0 left-1/2 h-[40%] w-[60%] -translate-x-1/2 bg-[#7d6342]"
+        style={{clipPath: "polygon(46% 0, 54% 0, 82% 100%, 18% 100%)"}}
+      />
+
+      {/* ---- CASTLES on hills (revealed when Gaston looks to the horizon) ---- */}
+      <div
+        className={`absolute inset-x-0 top-[20%] z-10 mx-auto flex max-w-5xl flex-wrap items-end justify-center gap-x-4 gap-y-6 px-4 transition-opacity duration-700 sm:gap-x-8 ${
           arrived ? "opacity-100" : "opacity-0"
         }`}
       >
         {ROOMS.map((room, i) => (
           <div
             key={room.href}
-            className={`flex flex-col items-center ${arrived ? "tower-rise" : ""}`}
+            className={`relative flex flex-col items-center ${
+              arrived ? "tower-rise" : ""
+            }`}
             style={arrived ? {animationDelay: `${i * 140}ms`} : undefined}
           >
-            <Tower color={room.color} roof={room.roof} />
+            {/* grassy hill behind the castle */}
+            <div className="absolute bottom-9 -z-10 h-16 w-36 rounded-[50%] bg-emerald-700 shadow-inner" />
+            <Castle color={room.color} roof={room.roof} />
             <Link
               href={room.href}
               tabIndex={arrived ? 0 : -1}
               aria-label={`Enter ${room.label}`}
-              className="mt-2 border-2 bg-black/70 px-2 py-1 text-center text-[9px] uppercase leading-tight tracking-widest text-white transition-colors hover:bg-black sm:px-3 sm:text-[10px]"
-              style={{borderColor: room.color, color: room.color}}
+              className="mt-2 rounded-sm border-2 bg-black/75 px-2 py-1 text-center text-[9px] uppercase leading-tight tracking-widest transition-colors hover:bg-black sm:px-3 sm:text-[10px]"
+              style={{
+                borderColor: room.color,
+                color: room.color,
+                fontFamily: "var(--font-pixel)",
+              }}
             >
               <span className="block text-white">{room.label}</span>
               <span className="block">▶ Enter</span>
@@ -123,14 +151,15 @@ export default function WorldScene({
         ))}
       </div>
 
-      {/* Gaston, walking up the road then standing */}
-      <div className="absolute bottom-[6%] left-1/2 z-20 -translate-x-1/2">
-        <div className={walk ? "npc-walk" : arrived ? "npc-arrived" : ""}>
-          <div className={walk ? "npc-step" : ""}>
-            <PixelNpc width={130} className="drop-shadow-[0_8px_0_rgba(0,0,0,0.45)]" />
-          </div>
+      {/* ---- The knight, standing on the road, gazing at the horizon ---- */}
+      <div className="absolute bottom-[5%] left-1/2 z-20 -translate-x-1/2">
+        <div className="npc-idle">
+          <PixelNpc width={140} className="drop-shadow-[0_8px_0_rgba(0,0,0,0.45)]" />
         </div>
       </div>
+
+      {/* ---- Dialogue (knight is already on the road) ---- */}
+      {talking && <Dialogue onDone={onTalkDone} />}
     </section>
   );
 }
