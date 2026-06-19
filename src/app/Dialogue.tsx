@@ -13,7 +13,6 @@ export default function Dialogue({onDone}: {onDone: () => void}) {
   const [lineDone, setLineDone] = useState(false);
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
-  // Type out the current line.
   useEffect(() => {
     const full = LINES[idx];
     setTyped("");
@@ -56,32 +55,30 @@ export default function Dialogue({onDone}: {onDone: () => void}) {
     return () => window.removeEventListener("keydown", onKey);
   }, [advance, onDone]);
 
+  // A comic speech bubble that points down to the knight below it.
   return (
     <div
       onClick={advance}
-      className="absolute inset-x-0 bottom-0 z-30 flex cursor-pointer justify-center px-4 pb-6"
-      style={{fontFamily: "var(--font-pixel)"}}
+      className="absolute bottom-[26%] left-1/2 z-30 w-[88%] max-w-md -translate-x-1/2 cursor-pointer"
     >
-      <div className="w-full max-w-2xl">
-        {/* name plate */}
-        <div className="mb-[-2px] ml-2 inline-block rounded-t border-4 border-amber-700 bg-stone-900 px-3 py-1 text-[10px] text-amber-300">
-          GASTON
-        </div>
-        {/* parchment / stone panel */}
-        <div className="relative min-h-24 rounded-b rounded-tr border-4 border-amber-700 bg-stone-900/95 p-5 shadow-[0_0_0_4px_#1c1917]">
-          <p className="text-[11px] leading-relaxed text-amber-50 sm:text-sm sm:leading-loose">
-            {typed}
-          </p>
-          {lineDone && (
-            <span className="blink-arrow absolute bottom-3 right-4 text-amber-300">
-              ▼
-            </span>
-          )}
-        </div>
-        <p className="mt-3 text-center text-[9px] uppercase tracking-widest text-amber-100/40">
-          click or press space to continue
+      <div
+        className="bubble-pop relative rounded-2xl border-4 border-stone-900 bg-amber-50 px-5 py-4 text-center shadow-xl"
+        style={{fontFamily: "var(--font-pixel)"}}
+      >
+        <p className="text-[10px] leading-relaxed text-stone-900 sm:text-xs sm:leading-loose">
+          {typed}
         </p>
+        {lineDone && (
+          <span className="blink-arrow absolute bottom-2 right-3 text-stone-700">
+            ▼
+          </span>
+        )}
+        {/* tail pointing down to the knight */}
+        <span className="absolute -bottom-3 left-1/2 h-5 w-5 -translate-x-1/2 rotate-45 border-b-4 border-r-4 border-stone-900 bg-amber-50" />
       </div>
+      <p className="mt-4 text-center text-[8px] uppercase tracking-widest text-white/60" style={{fontFamily: "var(--font-pixel)"}}>
+        click or press space
+      </p>
     </div>
   );
 }
