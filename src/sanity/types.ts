@@ -1,6 +1,7 @@
 import type {SanityImageSource} from '@sanity/image-url'
 
 export type Chess = {
+  photo: SanityImageSource | null
   rating: number | null
   accounts: {
     _key: string

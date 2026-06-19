@@ -1,6 +1,8 @@
 import Link from "next/link";
+import Image from "next/image";
 import {sanityFetch} from "@/sanity/lib/fetch";
 import {CHESS_QUERY} from "@/sanity/lib/queries";
+import {urlForImage} from "@/sanity/lib/image";
 import type {Chess} from "@/sanity/types";
 
 export const metadata = {title: "Chess — gasemilauh"};
@@ -34,14 +36,25 @@ export default async function ChessPage() {
           ← Back to hub
         </Link>
 
-        <header className="mt-6 border-b-2 border-stone-800 pb-6">
-          <h1 className="text-6xl font-bold tracking-tight">Chess</h1>
-          {data?.rating != null && (
-            <p className="mt-2 text-2xl text-stone-600">
-              Current rating{" "}
-              <span className="font-bold text-stone-900">{data.rating}</span>
-            </p>
+        <header className="mt-6 flex flex-col gap-6 border-b-2 border-stone-800 pb-6 sm:flex-row sm:items-end">
+          {data?.photo && (
+            <Image
+              src={urlForImage(data.photo).width(320).height(320).fit("crop").url()}
+              alt="Chess"
+              width={160}
+              height={160}
+              className="h-40 w-40 rounded-lg border border-stone-300 object-cover shadow-sm"
+            />
           )}
+          <div>
+            <h1 className="text-6xl font-bold tracking-tight">Chess</h1>
+            {data?.rating != null && (
+              <p className="mt-2 text-2xl text-stone-600">
+                Current rating{" "}
+                <span className="font-bold text-stone-900">{data.rating}</span>
+              </p>
+            )}
+          </div>
         </header>
 
         {!data && (

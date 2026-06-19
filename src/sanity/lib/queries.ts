@@ -2,6 +2,7 @@ import {defineQuery} from 'next-sanity'
 
 export const CHESS_QUERY = defineQuery(`
   *[_type == "chessProfile"][0]{
+    photo,
     rating,
     accounts[]{ _key, platform, username, url },
     favoriteOpenings[]{ _key, name, color, moves, notes },
