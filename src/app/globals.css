@@ -280,14 +280,35 @@ body {
 }
 
 /* ----- Day / night cycle ----- */
+/* Stays clear while the sun is up (0-42%), darkens as it sets, holds night
+   while the moon is up, then clears again at dawn — synced to the arcs. */
 @keyframes nightfall {
   0%,
+  42% {
+    opacity: 0;
+  }
+  52% {
+    opacity: 1;
+  }
+  92% {
+    opacity: 1;
+  }
   100% {
     opacity: 0;
   }
-  50% {
-    opacity: 1;
+}
+
+/* ----- Drifting clouds ----- */
+@keyframes cloud-drift {
+  from {
+    transform: translateX(-35vw);
   }
+  to {
+    transform: translateX(125vw);
+  }
+}
+.cloud {
+  animation: cloud-drift linear infinite;
 }
 /* Sun rises on the left, arcs across the sky, and sets on the right. */
 @keyframes sun-arc {
@@ -369,7 +390,8 @@ body {
   .stars,
   .stars-2,
   .stars-3,
-  .pointer-bounce {
+  .pointer-bounce,
+  .cloud {
     animation: none;
   }
 }
