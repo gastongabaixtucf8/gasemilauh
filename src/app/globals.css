@@ -188,6 +188,47 @@ body {
   animation: intro-fade-out 0.6s ease forwards;
 }
 
+/* ----- World scene: walking up the road ----- */
+@keyframes npc-walk {
+  from {
+    transform: translateY(0) scale(1);
+  }
+  to {
+    transform: translateY(-30vh) scale(0.5);
+  }
+}
+@keyframes npc-step {
+  0%,
+  100% {
+    transform: translateY(0) rotate(-3deg);
+  }
+  50% {
+    transform: translateY(-6px) rotate(3deg);
+  }
+}
+@keyframes tower-rise {
+  from {
+    transform: translateY(40px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+.npc-walk {
+  animation: npc-walk 3.5s ease-in forwards;
+}
+.npc-arrived {
+  transform: translateY(-30vh) scale(0.5);
+}
+.npc-step {
+  animation: npc-step 0.34s steps(2, end) infinite;
+}
+.tower-rise {
+  animation: tower-rise 0.6s ease-out both;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .gaston-pop,
   .gaston-bob,
@@ -196,7 +237,10 @@ body {
   .caret,
   .npc-idle,
   .npc-wave,
-  .blink-arrow {
+  .blink-arrow,
+  .npc-walk,
+  .npc-step,
+  .tower-rise {
     animation: none;
   }
 }
