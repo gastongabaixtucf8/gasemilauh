@@ -133,80 +133,78 @@ export function GamesCastle({width}: CastleProps) {
   );
 }
 
-/** Manga — colourful anime castle exploding with speed lines and sparkles. */
+/** Manga — a pretty anime sky-castle: tiered pagoda on a floating island. */
 export function MangaCastle({width}: CastleProps) {
   const white = "#fffdf7";
-  const ink = "#1a1a1a";
-  const pink = "#f472b6";
+  const ink = "#3a3340";
+  const roof = "#2546a8";
+  const roofD = "#1b3582";
+  const gold = "#e8c14a";
+  const lit = "#fcd34d";
+  const pink = "#f9a8d4";
   const rose = "#ec4899";
-  const sky = "#38bdf8";
-  // speed lines bursting from above the keep out to the margins
-  const burst: [number, number][] = [
-    [-8, -8],
-    [0, -8],
-    [8, -8],
-    [24, -8],
-    [32, -8],
-    [40, -8],
-    [40, 2],
-    [40, 12],
-    [-8, 2],
-    [-8, 12],
-  ];
+  const skin = "#f2c79b";
+  const trunk = "#7a5230";
   return (
     <Svg width={width}>
-      {burst.map(([x, y], k) => (
-        <line key={k} x1="16" y1="-5" x2={x} y2={y} stroke={ink} strokeWidth="0.25" />
-      ))}
+      {/* floating island */}
+      <ellipse cx="16" cy="29" rx="15" ry="3" fill="#86efac" stroke="#16a34a" strokeWidth="0.4" />
+      <polygon points="2,29 30,29 24,34 8,34" fill="#9c6b3f" />
+      <polygon points="8,34 24,34 16,37" fill="#7a5230" />
+      <rect x="6" y="36" width="1.5" height="1.5" fill="#9c6b3f" />
+      <rect x="25" y="35" width="1.5" height="1.5" fill="#9c6b3f" />
 
-      {/* floating island the castle sits on */}
-      <polygon points="3,28 29,28 23,33 9,33" fill="#9c6b3f" stroke={ink} strokeWidth="0.4" />
-      <polygon points="9,33 23,33 16,36" fill="#7a5230" stroke={ink} strokeWidth="0.4" />
-      <ellipse cx="16" cy="28" rx="14" ry="2.4" fill="#86efac" stroke={ink} strokeWidth="0.4" />
-      {/* little rubble drifting below */}
-      <rect x="6" y="35" width="1.5" height="1.5" fill="#9c6b3f" />
-      <rect x="24" y="34" width="1.5" height="1.5" fill="#9c6b3f" />
+      {/* cherry blossom tree on the island */}
+      <rect x="4" y="24" width="1" height="5" fill={trunk} />
+      <circle cx="3.5" cy="23" r="2" fill={pink} />
+      <circle cx="5.5" cy="23.5" r="1.8" fill={rose} />
+      <circle cx="4.5" cy="21.5" r="1.6" fill={pink} />
 
-      <rect x="2" y="15" width="11" height="13" fill={white} stroke={ink} strokeWidth="0.6" />
-      <rect x="19" y="15" width="11" height="13" fill={white} stroke={ink} strokeWidth="0.6" />
-      {[2, 5, 8, 11, 20, 23, 26, 29].map((x) => (
-        <rect key={x} x={x} y="13" width="2" height="2" fill={pink} stroke={ink} strokeWidth="0.5" />
-      ))}
-      <rect x="10" y="6" width="12" height="22" fill={white} stroke={ink} strokeWidth="0.7" />
-      <rect x="10" y="6" width="12" height="2" fill={rose} />
-      {[10, 13, 16, 19].map((x) => (
-        <rect key={x} x={x} y="4" width="2" height="2" fill={pink} stroke={ink} strokeWidth="0.5" />
-      ))}
-      {[11, 13, 15, 17, 19, 21].map((x) => (
-        <circle key={x} cx={x} cy="11" r="0.5" fill={ink} />
-      ))}
-      <rect x="12" y="14" width="2" height="2" fill={sky} stroke={ink} strokeWidth="0.4" />
-      <rect x="18" y="14" width="2" height="2" fill={sky} stroke={ink} strokeWidth="0.4" />
-      <rect x="14" y="22" width="4" height="6" fill={ink} />
-      <rect x="16" y="0" width="1" height="4" fill={ink} />
-      <polygon points="17,0 23,1.5 17,3" fill={pink} stroke={ink} strokeWidth="0.4" />
+      {/* base tier */}
+      <rect x="9" y="20" width="14" height="9" fill={white} stroke={ink} strokeWidth="0.5" />
+      <rect x="11" y="23" width="2" height="2" fill={lit} />
+      <rect x="19" y="23" width="2" height="2" fill={lit} />
+      <rect x="15" y="25" width="2" height="4" fill={roofD} />
+      {/* base roof */}
+      <polygon points="6,20 9,16 23,16 26,20" fill={roof} stroke={ink} strokeWidth="0.4" />
+      <polygon points="6,20 4.5,18 7,19" fill={roof} />
+      <polygon points="26,20 27.5,18 25,19" fill={roof} />
+      <rect x="6" y="19.4" width="20" height="0.8" fill={roofD} />
 
-      {/* big sparkles */}
-      <path d="M-6 -4 L-5 -2 L-3 -1 L-5 0 L-6 2 L-7 0 L-9 -1 L-7 -2 Z" fill={rose} />
-      <path d="M35 -3 L36 -1 L38 0 L36 1 L35 3 L34 1 L32 0 L34 -1 Z" fill={ink} />
-      <path d="M-6 24 L-5.3 25.3 L-4 26 L-5.3 26.7 L-6 28 L-6.7 26.7 L-8 26 L-6.7 25.3 Z" fill={pink} />
-      {/* bold exclamation */}
-      <rect x="34" y="22" width="1.5" height="4" fill={rose} />
-      <rect x="34" y="27" width="1.5" height="1.5" fill={rose} />
+      {/* mid tier */}
+      <rect x="11" y="13" width="10" height="4" fill={white} stroke={ink} strokeWidth="0.5" />
+      <rect x="13" y="14" width="2" height="2" fill={lit} />
+      <rect x="17" y="14" width="2" height="2" fill={lit} />
+      {/* mid roof */}
+      <polygon points="8,13 11,9.5 21,9.5 24,13" fill={roof} stroke={ink} strokeWidth="0.4" />
+      <polygon points="8,13 6.5,11 9,12" fill={roof} />
+      <polygon points="24,13 25.5,11 23,12" fill={roof} />
+      <rect x="8" y="12.4" width="16" height="0.8" fill={roofD} />
 
-      {/* little people standing on the castle */}
-      {/* on the left wall */}
-      <rect x="5" y="9" width="2" height="1" fill={ink} />
-      <circle cx="6" cy="10.5" r="1" fill="#f2c79b" />
-      <rect x="5" y="11.5" width="2" height="2.5" fill="#ef4444" />
-      {/* on the right wall (pink-haired) */}
-      <rect x="24" y="9" width="2" height="1" fill={rose} />
-      <circle cx="25" cy="10.5" r="1" fill="#f2c79b" />
-      <rect x="24" y="11.5" width="2" height="2.5" fill={sky} />
-      {/* on the keep */}
-      <rect x="15" y="0" width="2" height="1" fill={ink} />
-      <circle cx="16" cy="1.5" r="1" fill="#f2c79b" />
-      <rect x="15" y="2.5" width="2" height="2.5" fill="#fde047" />
+      {/* top tier */}
+      <rect x="13" y="6" width="6" height="3.5" fill={white} stroke={ink} strokeWidth="0.5" />
+      <rect x="15" y="7" width="2" height="2" fill={lit} />
+      {/* top roof */}
+      <polygon points="10,6 13,3 19,3 22,6" fill={roof} stroke={ink} strokeWidth="0.4" />
+      <polygon points="10,6 8.5,4 11,5" fill={roof} />
+      <polygon points="22,6 23.5,4 21,5" fill={roof} />
+      {/* golden finial */}
+      <rect x="15.5" y="0.5" width="1" height="3" fill={gold} />
+      <circle cx="16" cy="0.5" r="1" fill={gold} />
+
+      {/* sparkles */}
+      <path d="M28 4 L28.7 5.3 L30 6 L28.7 6.7 L28 8 L27.3 6.7 L26 6 L27.3 5.3 Z" fill={rose} />
+      <path d="M-4 8 L-3.3 9.3 L-2 10 L-3.3 10.7 L-4 12 L-4.7 10.7 L-6 10 L-4.7 9.3 Z" fill={pink} />
+      <circle cx="30" cy="14" r="0.6" fill={rose} />
+      <circle cx="-3" cy="2" r="0.6" fill={pink} />
+
+      {/* little people on the island */}
+      <rect x="19" y="26" width="1.6" height="0.8" fill={ink} />
+      <circle cx="19.8" cy="27" r="0.9" fill={skin} />
+      <rect x="19" y="28" width="1.6" height="2" fill={rose} />
+      <rect x="23" y="26" width="1.6" height="0.8" fill={pink} />
+      <circle cx="23.8" cy="27" r="0.9" fill={skin} />
+      <rect x="23" y="28" width="1.6" height="2" fill="#38bdf8" />
     </Svg>
   );
 }
