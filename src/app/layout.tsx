@@ -3,7 +3,8 @@ import {
   Geist,
   Geist_Mono,
   Press_Start_2P,
-  Bangers,
+  Yuji_Syuku,
+  Shippori_Mincho,
   Cinzel,
   Cormorant_Garamond,
 } from "next/font/google";
@@ -26,9 +27,16 @@ const pixel = Press_Start_2P({
   subsets: ["latin"],
 });
 
-const manga = Bangers({
+// Manga: a brush font for headings, a mincho (print serif) for body text
+const mangaBrush = Yuji_Syuku({
   variable: "--font-manga",
   weight: "400",
+  subsets: ["latin"],
+});
+
+const mangaBody = Shippori_Mincho({
+  variable: "--font-manga-body",
+  weight: ["400", "600", "800"],
   subsets: ["latin"],
 });
 
@@ -56,7 +64,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} ${pixel.variable} ${manga.variable} ${gothic.variable} ${chess.variable} h-full antialiased`}
+      className={`${geistSans.variable} ${geistMono.variable} ${pixel.variable} ${mangaBrush.variable} ${mangaBody.variable} ${gothic.variable} ${chess.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">{children}</body>
     </html>

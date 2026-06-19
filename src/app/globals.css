@@ -31,6 +31,27 @@ body {
   background-size: 8px 8px;
 }
 
+/* radiating manga focus lines (saido-sen) */
+.manga-focus {
+  background-image: repeating-conic-gradient(
+    from 0deg at 50% 50%,
+    #000 0deg 0.7deg,
+    transparent 0.7deg 4deg
+  );
+  -webkit-mask-image: radial-gradient(closest-side, transparent 42%, #000 78%);
+  mask-image: radial-gradient(closest-side, transparent 42%, #000 78%);
+}
+/* horizontal manga speed lines (used as section breaks) */
+.manga-speed {
+  background-image: repeating-linear-gradient(
+    to right,
+    #000 0 2px,
+    transparent 2px 6px
+  );
+  -webkit-mask-image: linear-gradient(to right, #000, transparent);
+  mask-image: linear-gradient(to right, #000, transparent);
+}
+
 /* ----- Grimdark metal sheen (Warhammer room) ----- */
 .metal-sheen {
   background-image: linear-gradient(
