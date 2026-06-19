@@ -263,7 +263,7 @@ body {
 @keyframes twinkle {
   0%,
   100% {
-    opacity: 0.25;
+    opacity: 0.45;
   }
   50% {
     opacity: 1;
@@ -274,6 +274,9 @@ body {
 }
 .stars-2 {
   animation: twinkle 4.6s ease-in-out infinite;
+}
+.stars-3 {
+  animation: twinkle 6s ease-in-out infinite;
 }
 
 /* ----- Day / night cycle ----- */
@@ -321,13 +324,13 @@ body {
   }
 }
 .sky-night {
-  animation: nightfall 44s ease-in-out infinite;
+  animation: nightfall 34s ease-in-out infinite;
 }
 .sun-body {
-  animation: sun-arc 44s ease-in-out infinite;
+  animation: sun-arc 34s ease-in-out infinite;
 }
 .moon-body {
-  animation: moon-arc 44s ease-in-out infinite;
+  animation: moon-arc 34s ease-in-out infinite;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -348,6 +351,7 @@ body {
   .rise-from-ground,
   .stars,
   .stars-2,
+  .stars-3,
   .pointer-bounce {
     animation: none;
   }

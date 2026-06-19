@@ -29,7 +29,7 @@ export function ChessCastle({width}: CastleProps) {
     <Svg width={width}>
       {/* checkered courtyard */}
       {Array.from({length: 24}, (_, k) => -8 + k * 2).map((x, k) => (
-        <rect key={x} x={x} y="30" width="2" height="3" fill={k % 2 === 0 ? dark : light} />
+        <rect key={x} x={x} y="30" width="2" height="4" fill={k % 2 === 0 ? dark : light} />
       ))}
 
       {/* giant black rook on the left */}
@@ -159,6 +159,14 @@ export function MangaCastle({width}: CastleProps) {
         <line key={k} x1="16" y1="-5" x2={x} y2={y} stroke={ink} strokeWidth="0.25" />
       ))}
 
+      {/* floating island the castle sits on */}
+      <polygon points="3,28 29,28 23,33 9,33" fill="#9c6b3f" stroke={ink} strokeWidth="0.4" />
+      <polygon points="9,33 23,33 16,36" fill="#7a5230" stroke={ink} strokeWidth="0.4" />
+      <ellipse cx="16" cy="28" rx="14" ry="2.4" fill="#86efac" stroke={ink} strokeWidth="0.4" />
+      {/* little rubble drifting below */}
+      <rect x="6" y="35" width="1.5" height="1.5" fill="#9c6b3f" />
+      <rect x="24" y="34" width="1.5" height="1.5" fill="#9c6b3f" />
+
       <rect x="2" y="15" width="11" height="13" fill={white} stroke={ink} strokeWidth="0.6" />
       <rect x="19" y="15" width="11" height="13" fill={white} stroke={ink} strokeWidth="0.6" />
       {[2, 5, 8, 11, 20, 23, 26, 29].map((x) => (
@@ -185,6 +193,20 @@ export function MangaCastle({width}: CastleProps) {
       {/* bold exclamation */}
       <rect x="34" y="22" width="1.5" height="4" fill={rose} />
       <rect x="34" y="27" width="1.5" height="1.5" fill={rose} />
+
+      {/* little people standing on the castle */}
+      {/* on the left wall */}
+      <rect x="5" y="9" width="2" height="1" fill={ink} />
+      <circle cx="6" cy="10.5" r="1" fill="#f2c79b" />
+      <rect x="5" y="11.5" width="2" height="2.5" fill="#ef4444" />
+      {/* on the right wall (pink-haired) */}
+      <rect x="24" y="9" width="2" height="1" fill={rose} />
+      <circle cx="25" cy="10.5" r="1" fill="#f2c79b" />
+      <rect x="24" y="11.5" width="2" height="2.5" fill={sky} />
+      {/* on the keep */}
+      <rect x="15" y="0" width="2" height="1" fill={ink} />
+      <circle cx="16" cy="1.5" r="1" fill="#f2c79b" />
+      <rect x="15" y="2.5" width="2" height="2.5" fill="#fde047" />
     </Svg>
   );
 }
